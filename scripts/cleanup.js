@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 
 const LINKS_FILE = "data/links.json";
-const SLUGS_DIR = "docs/slugs";
+const SLUGS_DIR = "docs";
 const INFINITE = "1998-08-06";
 
 function loadLinks() {

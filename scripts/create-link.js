@@ -4,7 +4,7 @@ const crypto = require("crypto");
 const { Octokit } = require("@octokit/rest");
 
 const LINKS_FILE = "data/links.json";
-const SLUGS_DIR = "docs/slugs";
+const SLUGS_DIR = "docs";
 const INFINITE = "1998-08-06";
 
 function parseIssueBody(body) {

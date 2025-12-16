@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const { Octokit } = require("@octokit/rest");
 
-const SLUGS_DIR = "docs/slugs";
+const SLUGS_DIR = "docs";
 const LINKS_FILE = "data/links.json";
 
 // ENV VARIABLES from GitHub Action
