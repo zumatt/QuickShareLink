@@ -3,7 +3,7 @@ name: Cleanup expired links
 # Run once per month at midnight UTC
 on:
   schedule:
-    - cron: '0 0 1 * *' # 1st day of each month at 00:00 UTC
+    - cron: '0 0 * * *'
 
 permissions:
   contents: write
