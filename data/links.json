@@ -1,1 +1,6 @@
-{}
+{
+  "mylink": {
+    "url": "https://example.com",
+    "expires": "2025-12-31"
+  }
+}
