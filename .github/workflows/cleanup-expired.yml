@@ -1,0 +1,21 @@
+name: Cleanup expired links
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: node scripts/cleanup.js
+      - run: |
+          if [[ `git status --porcelain` ]]; then
+            git config user.name "qsl-bot"
+            git config user.email "bot@qsl.li"
+            git add .
+            git commit -m "Cleanup expired links"
+            git push
+          fi

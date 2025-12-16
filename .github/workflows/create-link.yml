@@ -1,0 +1,32 @@
+name: Create short link
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  create:
+    if: github.event.issue.title == 'Create short link'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create link
+        run: |
+          echo '${{ github.event.issue.body }}' > payload.json
+          node scripts/create-link.js
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+
+      - name: Commit changes
+        run: |
+          git config user.name "qsl-bot"
+          git config user.email "bot@qsl.li"
+          git add .
+          git commit -m "Create short link"
+          git push
+
+      - name: Close issue
+        uses: peter-evans/close-issue@v3
+        with:
+          issue-number: ${{ github.event.issue.number }}

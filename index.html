@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>QuickShareLink</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+  <h1>QuickShareLink</h1>
+
+  <form id="form">
+    <input name="url" type="url" placeholder="Destination URL" required />
+    <input name="slug" type="text" placeholder="Custom slug (optional)" />
+    <input name="expires" type="date" required />
+    <button>Create short link</button>
+  </form>
+
+  <p id="status"></p>
+
+  <script>
+    const form = document.getElementById("form");
+    const status = document.getElementById("status");
+
+    form.addEventListener("submit", async e => {
+      e.preventDefault();
+      status.textContent = "Submitting...";
+
+      const data = Object.fromEntries(new FormData(form));
+
+      const res = await fetch(
+        "https://api.github.com/repos/zumatt/QuickShareLink/issues",
+        {
+          method: "POST",
+          headers: {
+            "Accept": "application/vnd.github+json"
+          },
+          body: JSON.stringify({
+            title: "Create short link",
+            body: JSON.stringify(data)
+          })
+        }
+      );
+
+      if (res.ok) {
+        status.textContent = "Link creation requested!";
+        form.reset();
+      } else {
+        status.textContent = "Error creating link.";
+      }
+    });
+  </script>
+</body>
+</html>
