@@ -7,7 +7,7 @@ const issueBody = JSON.parse(process.env.ISSUE_BODY);
 const { url, slug, expires } = issueBody;
 
 const LINKS_FILE = "data/links.json";
-const SLUGS_DIR = "public/slugs";
+const SLUGS_DIR = "docs/slugs";
 const INFINITE = "1998-08-06";
 
 if (!url || !expires) {

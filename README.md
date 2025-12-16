@@ -39,7 +39,7 @@ Short links are generated, deployed, expired, and deleted using GitHub’s nativ
 │ └── cleanup-expired.yml
 ├── data/
 │ └── links.json
-├── public/
+├── docs/
 │ ├── index.html
 │ ├── 404.html
 │ └── slugs/
@@ -58,7 +58,7 @@ Short links are generated, deployed, expired, and deleted using GitHub’s nativ
 - Repository → **Settings → Pages**
 - Source:
   - Branch: `main`
-  - Folder: `/public`
+  - Folder: `/docs`
 
 ---
 
