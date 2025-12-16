@@ -89,3 +89,13 @@ Expires: 2025-12-31
 - After creation, the short link will be available at:
 
 https://qsl.li/mylink
+
+---
+
+## Future ToDo (or possible contributions)
+
+- [ ] Add citation.cff
+- [ ] Add a homepage of the project explaining how to use it
+- [ ] Create favicon
+- [ ] Add a reminder one week before and one day before expiring
+- [ ] Add function to renew link (max 1 year)
