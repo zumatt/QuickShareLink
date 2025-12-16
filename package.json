@@ -1,0 +1,18 @@
+{
+  "name": "quicksharelink",
+  "version": "1.0.0",
+  "description": "QuickShareLink is a **GitHub-powered short link service**. Users can create short links, set expiration dates, and manage them entirely via **GitHub Issues**. Expired links are automatically cleaned up once per month.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@octokit/rest": "^22.0.1"
+  }
+}
