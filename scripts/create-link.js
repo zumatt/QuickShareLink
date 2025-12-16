@@ -50,15 +50,18 @@ async function main() {
   const slugDir = path.join(SLUGS_DIR, finalSlug);
   fs.mkdirSync(slugDir, { recursive: true });
 
+  // Add tracking parameter to URL
+  const finalUrl = url.includes('?') ? `${url}&source=qsl` : `${url}?source=qsl`;
+
   const redirectHTML = `<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="refresh" content="0; url=${url}">
+<meta http-equiv="refresh" content="0; url=${finalUrl}">
 <title>Redirecting...</title>
 </head>
 <body>
-<p>Redirecting to <a href="${url}">${url}</a></p>
+<p>Redirecting to <a href="${finalUrl}">${finalUrl}</a></p>
 </body>
 </html>`;
 
