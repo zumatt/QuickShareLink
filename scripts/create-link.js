@@ -70,7 +70,7 @@ async function main() {
     owner: "zumatt",
     repo: "QuickShareLink",
     issue_number: process.env.ISSUE_NUMBER,
-    body: `✅ Link created: https://qsl.li/${finalSlug}`
+    body: `✅ Link created: https://qsl.li/${finalSlug}\n⏱️ The link will be visible and working in around 1 minute.`
   });
 
   console.log(`✅ Short link created: ${finalSlug}`);

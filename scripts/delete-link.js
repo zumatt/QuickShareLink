@@ -63,6 +63,6 @@ const octokit = new Octokit({ auth: GITHUB_TOKEN });
     owner: "zumatt",
     repo: "QuickShareLink",
     issue_number: ISSUE_NUMBER,
-    body: `✅ Link "${slugToDelete}" deleted by @${COMMENT_AUTHOR}`
+    body: `✅ Link "${slugToDelete}" deleted by @${COMMENT_AUTHOR}\n⏱️ The link will be removed in around 1 minute.`
   });
 })();
