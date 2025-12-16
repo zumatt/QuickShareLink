@@ -5,13 +5,12 @@ on:
     types: [created]
 
 permissions:
+  contents: write
   issues: write
 
 jobs:
   delete:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v4
         with:

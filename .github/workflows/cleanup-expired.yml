@@ -6,13 +6,12 @@ on:
     - cron: '0 0 1 * *' # 1st day of each month at 00:00 UTC
 
 permissions:
+  contents: write
   issues: write
 
 jobs:
   cleanup:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v4
         with:
