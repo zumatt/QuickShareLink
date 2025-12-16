@@ -12,19 +12,19 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Create link
-        run: |
-          echo '${{ github.event.issue.body }}' > payload.json
-          node scripts/create-link.js
+        run: node scripts/create-link.js
         env:
           ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Commit changes
         run: |
           git config user.name "qsl-bot"
           git config user.email "bot@qsl.li"
           git add .
-          git commit -m "Create short link"
-          git push
+          git commit -m "Create short link" || echo "No changes to commit"
+          git push || echo "Nothing to push"
 
       - name: Close issue
         uses: peter-evans/close-issue@v3

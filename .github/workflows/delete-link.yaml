@@ -1,0 +1,29 @@
+name: Delete short link
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  delete:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Delete link if authorized
+        run: node scripts/delete-link.js
+        env:
+          COMMENT_BODY: ${{ github.event.comment.body }}
+          COMMENT_AUTHOR: ${{ github.event.comment.user.login }}
+          ISSUE_AUTHOR: ${{ github.event.issue.user.login }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ADMIN_USERS: "zumatt" # comma-separated admin usernames
+
+      - name: Commit changes if any
+        run: |
+          git config user.name "qsl-bot"
+          git config user.email "bot@qsl.li"
+          git add .
+          git commit -m "Delete short link" || echo "No changes to commit"
+          git push || echo "Nothing to push"

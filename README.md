@@ -1,88 +1,91 @@
-# QuickShareLink (QSL)
+# QuickShareLink
 
-QuickShareLink is a **serverless URL shortener** built entirely on **GitHub Pages** and **GitHub Actions**.
-
-No backend.  
-No database.  
-No external services.
-
-Short links are generated, deployed, expired, and deleted using GitHub’s native tooling.
+QuickShareLink is a **GitHub-powered short link service**. Users can create short links, set expiration dates, and manage them entirely via **GitHub Issues**. Expired links are automatically cleaned up once per month.
 
 ---
 
-## ✨ Features
+## Features
 
-- 🔗 Custom or random slugs
-- ⏳ Expiration date (up to 1 year)
-- 🧹 Automatic cleanup of expired links
-
----
-
-## 🏗️ How it works
-
-1. User submits a link via the homepage
-2. A GitHub Issue is created (no auth required)
-3. GitHub Actions:
-   - Validates input
-   - Generates a redirect page
-   - Stores metadata in `links.json`
-4. GitHub Pages deploys the static site
-5. A daily cleanup job deletes expired links
+- Create short links via GitHub issues
+- Custom or randomly generated slugs
+- Expiration dates up to one year
+- Automatic cleanup of expired links
+- Delete links via issue comments (author or admin)
+- Fully powered by GitHub Pages and Actions — no external server needed
 
 ---
 
-## 📁 Repository structure
-```
-.
-├── .github/workflows/
-│ ├── create-link.yml
-│ └── cleanup-expired.yml
-├── data/
-│ └── links.json
-├── docs/
-│ ├── index.html
-│ ├── 404.html
-│ └── slugs/
-├── scripts/
-│ ├── create-link.js
-│ └── cleanup.js
-└── README.md
-```
+## How It Works
+
+### 1. Create a Short Link
+
+1. Open a **new issue** in the repository.
+2. Set the **issue title** to: `Create short link`
+3. In the issue body, provide the following fields:
+    ```
+    URL: https://example.com
+    Slug: mylink # optional, leave empty for random
+    Expires: 2025-12-31 # or 1998-08-06 for infinite
+    ```
+4. Once the issue is created, the GitHub Action will:
+    - Validate the data
+    - Generate the redirect HTML page under `docs/slugs/<slug>`
+    - Update `data/links.json`
+    - Comment back with the short link:  
+        `✅ Link created: https://qsl.li/<slug>`
+    - Close the issue automatically
 
 ---
 
-## 🚀 Deployment
+### 2. Delete a Link
 
-### 1. Enable GitHub Pages
+To delete a short link:
 
-- Repository → **Settings → Pages**
-- Source:
-  - Branch: `main`
-  - Folder: `/docs`
-
----
-
-### 2. Allow GitHub Actions to push
-
-- Settings → Actions → General
-- Workflow permissions:
-  - ✅ Read and write permissions
+1. Comment on the original issue with: `delete link <slug>`
+2. Only the **issue author** or **admins** can delete links.
+3. The GitHub Action will:
+    - Remove the slug folder from `docs/slugs`
+    - Update `data/links.json`
+    - Comment with confirmation:  
+        `✅ Link "<slug>" deleted by @username`
 
 ---
 
-## 🔐 Security model
+### 3. Automatic Cleanup
 
-- Link creation is done via **GitHub Issues**
-- Actions run with repository-scoped permissions only
-- All operations are auditable via Git history
+- Expired links (with a date in the past) are automatically deleted **once per month** via a scheduled GitHub Action.
 
 ---
 
-## 🧪 Testing
+## Technical Details
 
-### Local testing
+- **Hosting:** GitHub Pages (`docs/` folder)
+- **Storage:** `data/links.json` stores all slug mappings
+- **Scripts:**
+  - `scripts/create-link.js` → handles issue-based creation
+  - `scripts/delete-link.js` → handles comment-based deletion
+  - `scripts/cleanup.js` → deletes expired links automatically
+- **Workflows:**
+  - `create-link.yml` → runs on issue creation
+  - `delete-link.yml` → runs on comment creation
+  - `cleanup-expired.yml` → runs monthly via cron
 
-```bash
-export ISSUE_BODY='{"url":"https://example.com","slug":"test","expires":"2099-01-01"}'
-node scripts/create-link.js
-```
+---
+
+## Link Expiration Rules
+
+- Maximum expiration: **1 year from creation**
+- Invalid or past dates will be rejected
+
+---
+
+## Example Issue Body
+
+URL: https://example.com
+Slug: mylink
+Expires: 2025-12-31
+
+- If `Slug` is omitted, a random 8-character slug is generated.
+- After creation, the short link will be available at:
+
+https://qsl.li/mylink
