@@ -2,7 +2,7 @@ name: Cleanup expired links
 
 on:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 0 1 * *'
   workflow_dispatch:
 
 jobs:
@@ -16,6 +16,6 @@ jobs:
             git config user.name "qsl-bot"
             git config user.email "bot@qsl.li"
             git add .
-            git commit -m "Cleanup expired links"
+            git commit -m "Monthly cleanup expired links"
             git push
           fi
