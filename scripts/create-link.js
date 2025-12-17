@@ -9,11 +9,42 @@ const INFINITE = "1998-08-06";
 
 function parseIssueBody(body) {
   const data = {};
-  body.split("\n").forEach(line => {
-    const [key, ...rest] = line.split(":");
-    if (!key || rest.length === 0) return;
-    data[key.trim().toLowerCase()] = rest.join(":").trim();
-  });
+  
+  // GitHub issue forms generate output with headers like "### Field Label"
+  // followed by the value on the next line(s)
+  const lines = body.split("\n");
+  
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+    
+    // Look for field headers
+    if (line.startsWith("### ")) {
+      const fieldName = line.substring(4).trim().toLowerCase();
+      let value = "";
+      
+      // Collect the value from subsequent non-header lines
+      for (let j = i + 1; j < lines.length; j++) {
+        const nextLine = lines[j].trim();
+        if (nextLine.startsWith("###") || nextLine.startsWith("##")) {
+          break;
+        }
+        if (nextLine && !nextLine.startsWith("_No response_")) {
+          value = nextLine;
+          break;
+        }
+      }
+      
+      // Map field names to expected keys
+      if (fieldName === "url") {
+        data.url = value;
+      } else if (fieldName === "slug") {
+        data.slug = value;
+      } else if (fieldName === "expiration date") {
+        data.expires = value;
+      }
+    }
+  }
+  
   return data;
 }
 

@@ -1,0 +1,54 @@
+---
+name: Create a qsl link
+about: This issue will automatically create a qsl link
+title: Create short link
+labels: link
+assignees: ''
+
+---
+
+URL: https://example.com
+Slug: mylink
+Expires: 2025-12-31
+
+name: Create a quick short link
+description: Thanks to this form you will be able to create a short link quickly.
+title: "Create short link"
+labels: ["link"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please fill out the following form to create a short link.
+  - type: input
+    id: url
+    attributes:
+      label: URL
+      description: Enter the URL you want to shorten.
+      placeholder: https://example.com
+    validations:
+      required: true
+  - type: input
+    id: slug
+    attributes:
+      label: Slug
+      description: Enter the custom slug for your short link.
+      placeholder: mylink
+    validations:
+      required: false
+  - type: input
+    id: date
+    attributes:
+      label: Expiration Date
+      description: Enter the expiration date for the short link in the format YYYY-MM-DD.
+      placeholder: 2026-01-31
+    validations:
+      required: true
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Terms of Service
+      description: By submitting this issue, you agree that your link will be publicly shared on github, comprehensive and accessible to all.
+      options:
+        - label: I agree to follow this project's Terms of Service
+          required: true

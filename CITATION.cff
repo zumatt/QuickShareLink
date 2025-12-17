@@ -1,0 +1,29 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: QuickShareLink
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Matteo
+    family-names: Subet
+    email: matteo.subet@supsi.ch
+    affiliation: >-
+      University of Applied Sciences and Arts of Southern
+      Switzerland (SUPSI)
+    orcid: 'https://orcid.org/0009-0003-4769-9568'
+repository-code: 'https://github.com/zumatt/QuickShareLink'
+url: 'http://qsl.li/'
+abstract: >-
+  QuickShareLink is a GitHub-powered short link service.
+  Users can create short links, set expiration dates, and
+  manage them entirely via GitHub Issues. Expired links are
+  automatically cleaned up once per day.
+keywords:
+  - link shortener
+  - shortener
+license: AGPL-3.0
+date-released: '2025-12-16'

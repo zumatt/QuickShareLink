@@ -1,6 +1,6 @@
 # QuickShareLink
 
-QuickShareLink is a **GitHub-powered short link service**. Users can create short links, set expiration dates, and manage them entirely via **GitHub Issues**. Expired links are automatically cleaned up once per month.
+QuickShareLink is a **GitHub-powered short link service**. Users can create short links, set expiration dates, and manage them entirely via **GitHub Issues**. Expired links are automatically cleaned up once per day.
 
 ---
 
@@ -94,9 +94,9 @@ https://qsl.li/mylink
 
 ## Future ToDo (or possible contributions)
 
-- [ ] Add citation.cff
 - [ ] Add a homepage of the project explaining how to use it
 - [ ] Create favicon
 - [ ] Add a reminder one week before and one day before expiring
 - [ ] Add function to renew link (max 1 year)
-- [ ] Changing issue method with form
+- [x] Changing issue method with form
+- [x] Add citation.cff
