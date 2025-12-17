@@ -2,7 +2,15 @@
 name: Test Form
 description: Test issue form
 body:
-  - type: input
-    id: test
+  - type: markdown
     attributes:
-      label: Test
+      value: |
+        Please fill out the following form to create a short link.
+  - type: input
+    id: url
+    attributes:
+      label: URL
+      description: Enter the URL you want to shorten.
+      placeholder: https://example.com
+    validations:
+      required: true
