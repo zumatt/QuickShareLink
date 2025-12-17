@@ -28,6 +28,15 @@ body:
     attributes:
       label: Expiration Date
       description: Enter the expiration date for the short link in the format YYYY-MM-DD.
-      placeholder: 2026-01-31
+      placeholder: e.g. 2026-01-31
+    validations:
+      required: true
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Terms of Service
+      description: By submitting this issue, you agree that your link will be publicly shared on github, comprehensive and accessible to all.
+      options:
+        - label: I agree to follow this project's Terms of Service
     validations:
       required: true
