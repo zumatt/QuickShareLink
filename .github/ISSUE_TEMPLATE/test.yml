@@ -24,7 +24,7 @@ body:
     validations:
       required: false
   - type: input
-    id: date
+    id: expiration_date
     attributes:
       label: Expiration Date
       description: Enter the expiration date for the short link in the format YYYY-MM-DD.
