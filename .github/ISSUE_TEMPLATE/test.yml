@@ -1,6 +1,6 @@
 # .github/ISSUE_TEMPLATE/test.yml
-name: Test Form
-description: Test issue form
+name: Create a new short link
+description: Please fill out the form to create a new short link. Do not change the issue title.
 title: "Create short link"
 body:
   - type: markdown
@@ -23,3 +23,11 @@ body:
       placeholder: mylink
     validations:
       required: false
+  - type: input
+    id: date
+    attributes:
+      label: Expiration Date
+      description: Enter the expiration date for the short link in the format YYYY-MM-DD.
+      placeholder: 2025-12-31
+    validations:
+      required: true
