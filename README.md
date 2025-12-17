@@ -98,5 +98,6 @@ https://qsl.li/mylink
 - [ ] Create favicon
 - [ ] Add a reminder one week before and one day before expiring
 - [ ] Add function to renew link (max 1 year)
+- [ ] Add a comment when the link is expired to the relative issue
 - [x] Changing issue method with form
 - [x] Add citation.cff
