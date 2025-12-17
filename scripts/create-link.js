@@ -37,10 +37,13 @@ function parseIssueBody(body) {
       // Map field names to expected keys
       if (fieldName === "url") {
         data.url = value;
+        console.log("Parsed URL:", value);
       } else if (fieldName === "slug") {
         data.slug = value;
+        console.log("Parsed Slug:", value);
       } else if (fieldName === "expiration date") {
         data.expires = value;
+        console.log("Parsed Expiration Date:", value);
       }
     }
   }
