@@ -1,6 +1,7 @@
 # .github/ISSUE_TEMPLATE/test.yml
 name: Test Form
 description: Test issue form
+title: "Create short link"
 body:
   - type: markdown
     attributes:
@@ -14,3 +15,11 @@ body:
       placeholder: https://example.com
     validations:
       required: true
+  - type: input
+    id: slug
+    attributes:
+      label: Slug
+      description: Enter the custom slug for your short link.
+      placeholder: mylink
+    validations:
+      required: false
