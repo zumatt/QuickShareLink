@@ -57,12 +57,28 @@ async function main() {
   if (!url || !expires) throw new Error("Missing required fields");
 
   const today = new Date();
+  today.setHours(0, 0, 0, 0); // Reset to start of day
   const expDate = new Date(expires);
+  expDate.setHours(0, 0, 0, 0); // Reset to start of day
   const maxDate = new Date();
   maxDate.setFullYear(today.getFullYear() + 1);
 
-  if (expires !== INFINITE && (expDate < today || expDate > maxDate)) {
-    throw new Error("Invalid expiration date");
+  // Check for past dates
+  if (expires !== INFINITE && expDate < today) {
+    const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
+    await octokit.issues.createComment({
+      owner: "zumatt",
+      repo: "QuickShareLink",
+      issue_number: process.env.ISSUE_NUMBER,
+      body: `❌ Link was not created: The expiration date (${expires}) is in the past. Please use today's date or a future date.`
+    });
+    console.log("❌ Link not created: expiration date is in the past");
+    process.exit(0); // Exit successfully since we handled it properly
+  }
+
+  // Check for dates too far in the future
+  if (expires !== INFINITE && expDate > maxDate) {
+    throw new Error("Invalid expiration date: date is more than 1 year in the future");
   }
 
   let finalSlug = slug?.trim() || crypto.randomBytes(4).toString("hex");
