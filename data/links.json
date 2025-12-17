@@ -2,5 +2,9 @@
   "mylink": {
     "url": "https://zumat.ch",
     "expires": "1998-08-06"
+  },
+  "physical-variable-apparatus": {
+    "url": "https://ginevraterenghi.github.io/data-probes/physical-variable-apparatus.html",
+    "expires": "1998-08-06"
   }
 }
