@@ -1,16 +1,3 @@
----
-name: Create a qsl link
-about: This issue will automatically create a qsl link
-title: Create short link
-labels: link
-assignees: ''
-
----
-
-URL: https://example.com
-Slug: mylink
-Expires: 2025-12-31
-
 name: Create a quick short link
 description: Thanks to this form you will be able to create a short link quickly.
 title: "Create short link"
