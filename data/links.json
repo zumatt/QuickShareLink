@@ -50,5 +50,9 @@
   "3d-test": {
     "url": "https://www.printables.com/model/1538269-ultimate-cable-organizer-clip/files",
     "expires": "1998-08-06"
+  },
+  "ws-localintelligence": {
+    "url": "https://lauds.eu/events/workshop-local-machines-local-models-local-intelligence-co-designing-sustainability-for-open-urban-factories",
+    "expires": "2026-12-31"
   }
 }
